@@ -1,6 +1,6 @@
 # Gerenciamento de Funcionário
 
-> Aplicação feita inteiramente com Java, com a utilização da biblioteca **Swing** para inserção de dados e interaçãao com o usuário.
+> Aplicação feita inteiramente com Java, com a utilização da biblioteca **Swing** para inserção de dados e interação com o usuário.
 
 ## Estruturação
 
