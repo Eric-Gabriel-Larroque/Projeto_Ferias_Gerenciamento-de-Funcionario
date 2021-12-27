@@ -26,7 +26,7 @@ de acordo com a classe instanciada:
 
 2. **Lider Técnico** - Já com uma gama maior de métodos, sendo estes:
    - Alterar dados de determinado usuário (somente de cargos iguais ou menores);
-   - Visualizaçõ de dados detalhados de determidado usuário;
+   - Visualização de dados detalhados de determidado usuário;
    - Listar todos os funcionários;
    - Listar funcionários trabalhando;
    - Listar funcionários demitidos.
