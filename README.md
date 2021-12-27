@@ -22,7 +22,7 @@ de acordo com a classe instanciada:
 
 1. **Colaborador** - Cargo mais baixo da hierarquia. Contém os seguintes métodos: 
    - Alterar dados cadastrados;
-   - Visualizar detalhada de seus dados.
+   - Visualização detalhada de seus dados.
 
 2. **Lider Técnico** - Já com uma gama maior de métodos, sendo estes:
    - Alterar dados de determinado usuário (somente de cargos iguais ou menores);
