@@ -100,9 +100,9 @@ public abstract class Funcionario extends Validacao {
             this.RG = validaRG(
                     entradaVazia(
                             JOptionPane.showInputDialog(null,
-                                    "Este RG já consta em nosso banco de dados. Insira outro: ")
-                    )
-            );
+                                    "Este RG já consta em nosso banco de dados. Insira outro: "),
+                            "Insira o RG:")
+                );
         }
         listaRG.add(RG);
         return RG;
