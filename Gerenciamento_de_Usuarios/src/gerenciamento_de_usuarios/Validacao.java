@@ -23,8 +23,8 @@ public class Validacao {
             entrada = entradaVazia(JOptionPane.showInputDialog(null,
                     "Somente números são permitidos. "+errorLabel),
                     errorLabel);
-            entrada = entrada.length()>10?entrada.substring(0,6):entrada;
         }
+        entrada = entrada.length()>10?entrada.substring(0,2):entrada;
         return Integer.parseInt(entrada);
     }
 
