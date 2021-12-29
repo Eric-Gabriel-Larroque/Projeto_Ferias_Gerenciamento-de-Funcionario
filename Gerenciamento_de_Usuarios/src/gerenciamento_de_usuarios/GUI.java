@@ -11,7 +11,9 @@ public class GUI {
     public void iniciar() {
         int resposta = 0;
         Integer[] respostasPossiveis = {1,2,3,4,5};
-
+        String opcoes = "Você é um:\n" +
+                "1 - Colaborador\n2 - Líder Técnico\n3 - Gerente de Departamento\n" +
+                "4 - Gerente Geral\n5 - Sair";
         if(Funcionario.listaFuncionarios.size()==0) {
             criarFrame("img/welcome.png","audio/iniciar.wav",3500);
         }
@@ -21,9 +23,8 @@ public class GUI {
                            JOptionPane.showInputDialog(null,"Você é um:\n" +
                                            "1 - Colaborador\n2 - Líder Técnico\n3 - Gerente de Departamento\n" +
                                            "4 - Gerente Geral\n5 - Sair"
-                                   ,"Gerenciamento de Funcionários",JOptionPane.QUESTION_MESSAGE)
-                   )
-           );
+                                   ,"Gerenciamento de Funcionários",JOptionPane.QUESTION_MESSAGE),opcoes),
+           opcoes);
        }
         switch (resposta) {
             case 1:

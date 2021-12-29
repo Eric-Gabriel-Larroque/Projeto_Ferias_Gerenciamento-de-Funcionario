@@ -17,8 +17,8 @@ public class LiderTecnico extends Funcionario {
         while(resposta>listaFuncionarios.size()||resposta<=0) {
             resposta = somenteNumeros(entradaVazia(
                     JOptionPane.showInputDialog(null,
-                            label+funcionarios)
-            ));
+                            label+funcionarios),label+funcionarios
+            ),label+funcionarios);
         }
         return resposta;
     }
@@ -26,7 +26,7 @@ public class LiderTecnico extends Funcionario {
 
     public void detalhesFuncionario() {
         JOptionPane.showMessageDialog(null,detalhesFuncionario(listaFuncionarios.get(listarNomeRG(
-                "Qual dos seguintes funcionários você gostaaria de visualizar os detalhes?\n")-1)));
+                "Qual dos seguintes funcionários você gostaria de visualizar os detalhes?\n")-1)));
     }
 
     public void atualizarDetalhes() {
@@ -42,12 +42,13 @@ public class LiderTecnico extends Funcionario {
         for(int i = 0;i < funcionariosAtualizaveis.size();i++) {
             funcionarios += "\n"+(i+1)+") - "+funcionariosAtualizaveis.get(i).getNome()+" /RG - "+listaRG.get(i);
         }
+        String mensagemPadrao = "Qual o funcionário você gostaria de atualizar os dados?\n"+funcionarios;
         while(indice>funcionariosAtualizaveis.size()||indice<=0) {
             indice = somenteNumeros(entradaVazia(
-                    JOptionPane.showInputDialog(null,
-                            "Qual o funcionário você gostaria de atualizar os dados?\n"+funcionarios)
-            ));
+                    JOptionPane.showInputDialog(null,mensagemPadrao),
+                    mensagemPadrao),mensagemPadrao);
         }
+        --indice;
         listaRG.remove(listaFuncionarios.get(indice).getRG());
         listaFuncionarios.get(indice).setRG();
         listaFuncionarios.get(indice).setNome();
@@ -88,21 +89,21 @@ public class LiderTecnico extends Funcionario {
     public void operacoes() {
         int resposta = 0;
         Integer[] respostasPossiveis = {1,2,3,4,5,6};
-
+        String opcoes =    "\n1 - Verificar dados de determinado funcionário" +
+                           "\n2 - Listar todos os funcionários" +
+                           "\n3 - Listar funcionários demitidos" +
+                           "\n4 - Listar funcionáros empregados" +
+                           "\n5 - Atualizar dados de um determinado funcionario" +
+                           "\n6 - Voltar";
         while (!Arrays.asList(respostasPossiveis).contains(resposta)) {
             resposta = somenteNumeros(
                     entradaVazia(
                             JOptionPane.showInputDialog(null,
                                     "Bem-vindo(a) " + getNome() + ", o que deseja fazer?" +
-                                            "\n1 - Verificar dados de determinado funcionário" +
-                                            "\n2 - Listar todos os funcionários" +
-                                            "\n3 - Listar funcionários demitidos" +
-                                            "\n4 - Listar funcionáros empregados" +
-                                            "\n5 - Atualizar dados de um determinado funcionario" +
-                                            "\n6 - Voltar",
-                                    "Gerenciamento de Funcionário", JOptionPane.QUESTION_MESSAGE)
-                    )
-            );
+                                            opcoes,
+                                    "Gerenciamento de Funcionário", JOptionPane.QUESTION_MESSAGE),
+                    "Digite uma das opções abaixo:"+opcoes),
+            "Digite um dos números para executar a operação desejada:"+opcoes);
         }
         switch (resposta) {
             case 1:

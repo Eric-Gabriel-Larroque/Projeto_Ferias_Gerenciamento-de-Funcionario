@@ -33,7 +33,7 @@ public abstract class Funcionario extends Validacao {
     }
 
      String setNome() {
-        this.nome = entradaVazia(JOptionPane.showInputDialog("Insira o nome: "));
+        this.nome = entradaVazia(JOptionPane.showInputDialog("Insira o nome: "),"Digite novamente o nome:");
         listaNomes.add(nome);
         return nome;
     }
@@ -54,12 +54,14 @@ public abstract class Funcionario extends Validacao {
 
         String resposta = entradaVazia(
                 JOptionPane.showInputDialog(null, "Insira seu departamento: " + getTodosDepartamentos())
-        );
+        ,"Insira o nome do departamento"+getTodosDepartamentos());
         while (!listaDeptos.contains(resposta.toLowerCase())) {
             resposta = entradaVazia(
                     JOptionPane.showInputDialog(null,
                             "Departamento não encontrado. Temos os seguintes departamentos disponíveis: " +
-                                    getTodosDepartamentos())
+                                    getTodosDepartamentos()),
+                    "Digite novamente o nome do departamento "+getTodosDepartamentos()
+
             );
         }
         String finalResposta = resposta;
@@ -91,8 +93,8 @@ public abstract class Funcionario extends Validacao {
 
         this.RG = validaRG(
                 entradaVazia(
-                        JOptionPane.showInputDialog(null, "Insira o RG")
-                )
+                        JOptionPane.showInputDialog(null, "Insira o RG:"),
+                "Digite novamente o RG:")
         );
         while (listaRG.contains(RG)) {
             this.RG = validaRG(
@@ -160,16 +162,16 @@ public abstract class Funcionario extends Validacao {
     public void operacoes() {
         int resposta = 0;
         Integer[] respostasPossiveis = {1, 2, 3};
-
+        String opcoes = "\n1 - Verificar dados\n2 - Atualizar seus dados\n3 - Voltar";
         while (!Arrays.asList(respostasPossiveis).contains(resposta)) {
             resposta = somenteNumeros(
                     entradaVazia(
                             JOptionPane.showInputDialog(null,
                                     "Bem-vindo(a) " + getNome() + ", o que deseja fazer?" +
-                                            "\n1 - Verificar dados\n2 - Atualizar seus dados\n3 - Voltar",
-                                    "Gerenciamento de Funcionário", JOptionPane.QUESTION_MESSAGE)
-                    )
-            );
+                                            opcoes,
+                                    "Gerenciamento de Funcionário", JOptionPane.QUESTION_MESSAGE),
+                    "Insira uma das opcoes"+opcoes),
+            "Digite um dos números para executar a operação desejada:"+opcoes);
         }
         switch (resposta) {
             case 1:
