@@ -21,12 +21,15 @@ public class GerenteDepartamento extends LiderTecnico implements Gerente {
         for(int i = 0;i < funcionariosAtualizaveis.size();i++) {
             funcionarios += "\n"+(i+1)+") - "+funcionariosAtualizaveis.get(i).getNome()+" /RG - "+listaRG.get(i);
         }
+
+        String mensagemPadrao = "Qual funcionário você gostaria de atualizar os dados?\n"+funcionarios;
         while(indice>funcionariosAtualizaveis.size()||indice<=0) {
             indice = somenteNumeros(entradaVazia(
-                    JOptionPane.showInputDialog(null,
-                            "Qual o funcionário você gostaria de atualizar os dados?\n"+funcionarios)
-            ));
+                    JOptionPane.showInputDialog(null,mensagemPadrao),
+                    mensagemPadrao),
+            mensagemPadrao);
         }
+        --indice;
         listaRG.remove(listaFuncionarios.get(indice).getRG());
         listaFuncionarios.get(indice).setRG();
         listaFuncionarios.get(indice).setNome();
@@ -52,8 +55,10 @@ public class GerenteDepartamento extends LiderTecnico implements Gerente {
             while (resposta > listaFuncionarios.size() || resposta <= 0) {
                 resposta = somenteNumeros(entradaVazia(
                         JOptionPane.showInputDialog(null,
-                                label + funcionarios)
-                ));
+                                label + funcionarios),
+                        label+funcionarios),
+                label+funcionarios
+                );
             }
         if(funcionariosDepto.size()==0) {
             return  ++resposta;
@@ -78,15 +83,16 @@ public class GerenteDepartamento extends LiderTecnico implements Gerente {
                             funcionarioDeptos.get(i).getNome() +
                             " /RG - " + listaRG.get(i);
         }
+        String mensagemPadrao = "Qual dos funcionários você gostaria de demitir?\n"+funcionarios;
         if(funcionarioDeptos.size()==0) {
             JOptionPane.showMessageDialog(null,"Por enquanto não há ninguém do seu departamento" +
                     " além de você para ser demitido.");
         } else{
             while(resposta<=0||resposta>funcionarioDeptos.size()) {
                 resposta = somenteNumeros(entradaVazia(
-                        JOptionPane.showInputDialog(null,
-                                "Qual dos funcionários você gostaria de demitir?\n"+funcionarios)
-                ));
+                        JOptionPane.showInputDialog(null, mensagemPadrao),
+                                mensagemPadrao),
+                        mensagemPadrao);
             }
             Funcionario funcionario = listaFuncionarios.get(resposta-1);
             funcionario.setSituacao("Demitido");
@@ -101,12 +107,13 @@ public class GerenteDepartamento extends LiderTecnico implements Gerente {
     public void adicionarFuncionario() {
         int resposta = 0;
         Integer[] respostasPossiveis = {1, 2};
+        String opcoes = "Em qual cargo você gostaria de adicionar um funcionário?\n" +
+                        "1 - Colaborador\n2 - Líder Técnico";
         while (!Arrays.asList(respostasPossiveis).contains(resposta)) {
             resposta = somenteNumeros(entradaVazia(
                     JOptionPane.showInputDialog(null,
-                            "Em qual cargo você gostaria de adicionar um funcionário?\n" +
-                                    "1 - Colaborador\n2 - Líder Técnico")
-            ));
+                            opcoes),opcoes
+            ),opcoes);
         }
         switch (resposta) {
             case 1:
@@ -120,22 +127,24 @@ public class GerenteDepartamento extends LiderTecnico implements Gerente {
     public void operacoes() {
         int resposta = 0;
         Integer[] respostasPossiveis = {1,2,3,4,5,6,7,8};
+        String opcoes =  "\n1 - Verificar dados de determinado funcionário" +
+                         "\n2 - Listar todos os funcionários" +
+                         "\n3 - Listar funcionários demitidos" +
+                         "\n4 - Listar funcionáros empregados" +
+                         "\n5 - Atualizar dados de um determinado funcionario" +
+                         "\n6 - Demitir um funcionário" +
+                         "\n7 - Adicionar um funcionário" +
+                         "\n8 - Voltar";
 
         while (!Arrays.asList(respostasPossiveis).contains(resposta)) {
             resposta = somenteNumeros(
                     entradaVazia(
                             JOptionPane.showInputDialog(null,
                                     "Bem-vindo(a) " + getNome() + ", o que deseja fazer?" +
-                                            "\n1 - Verificar dados de determinado funcionário" +
-                                            "\n2 - Listar todos os funcionários" +
-                                            "\n3 - Listar funcionários demitidos" +
-                                            "\n4 - Listar funcionáros empregados" +
-                                            "\n5 - Atualizar dados de um determinado funcionario" +
-                                            "\n6 - Demitir um funcionário" +
-                                            "\n7 - Adicionar um funcionário" +
-                                            "\n8 - Voltar",
-                                    "Gerenciamento de Funcionário", JOptionPane.QUESTION_MESSAGE)
-                    )
+                                            opcoes,
+                                    "Gerenciamento de Funcionário", JOptionPane.QUESTION_MESSAGE),
+                            "Digite uma das opções abaixo:"+opcoes),
+                    "Digite um dos números para executar a operação desejada:"+opcoes
             );
         }
         switch (resposta) {
