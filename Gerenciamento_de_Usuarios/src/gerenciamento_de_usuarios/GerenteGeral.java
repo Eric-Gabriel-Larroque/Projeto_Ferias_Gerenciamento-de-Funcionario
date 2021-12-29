@@ -18,8 +18,9 @@ public class GerenteGeral extends GerenteDepartamento implements Gerente{
         while(resposta>listaFuncionarios.size()||resposta<=0) {
             resposta = somenteNumeros(entradaVazia(
                     JOptionPane.showInputDialog(null,
-                            label+funcionarios)
-            ));
+                            label+funcionarios),
+                        label+funcionarios),
+                    label+funcionarios);
         }
         return resposta;
     }
@@ -49,15 +50,16 @@ public class GerenteGeral extends GerenteDepartamento implements Gerente{
                     funcionariosDemissiveis.get(i).getNome() +
                     " /RG - " + listaRG.get(i);
         }
+        String mensagemPadrao = "Qual dos funcionários você gostaria de demitir?\n"+funcionarios;
         if(funcionariosDemissiveis.size()==0) {
             JOptionPane.showMessageDialog(null,"Por enquanto não há ninguém do seu departamento" +
                     " além de você para ser demitido.");
         } else{
             while(resposta<=0||resposta>funcionariosDemissiveis.size()) {
                 resposta = somenteNumeros(entradaVazia(
-                        JOptionPane.showInputDialog(null,
-                                "Qual dos funcionários você gostaria de demitir?\n"+funcionarios)
-                ));
+                        JOptionPane.showInputDialog(null, mensagemPadrao),
+                                mensagemPadrao),
+                        mensagemPadrao);
             }
             Funcionario funcionario = listaFuncionarios.get((resposta-1));
             funcionario.setSituacao("Demitido");
@@ -72,12 +74,13 @@ public class GerenteGeral extends GerenteDepartamento implements Gerente{
     public void adicionarFuncionario() {
         int resposta = 0;
         Integer[] respostasPossiveis = {1, 2, 3};
+        String opcoes = "Em qual cargo você gostaria de adicionar um funcionário?\n" +
+                        "1 - Colaborador\n2 - Líder Técnico\n3 - Gerente de Departamento";
         while (!Arrays.asList(respostasPossiveis).contains(resposta)) {
             resposta = somenteNumeros(entradaVazia(
-                    JOptionPane.showInputDialog(null,
-                            "Em qual cargo você gostaria de adicionar um funcionário?\n" +
-                                    "1 - Colaborador\n2 - Líder Técnico\n3 - Gerente de Departamento")
-            ));
+                    JOptionPane.showInputDialog(null, opcoes),
+                    opcoes),
+            opcoes);
         }
         switch (resposta) {
             case 1:
