@@ -1,30 +1,30 @@
 package gerenciamento_de_usuarios;
 
 import javax.swing.*;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
-public class GUI {
-
-    Validacao validacao = new Validacao();
-
+public class GUI extends Validacao{
 
     public void iniciar() {
         int resposta = 0;
-        Integer[] respostasPossiveis = {1,2,3,4,5};
+        Integer[] respostas = {1,2,3,4,5};
+        List<Integer> respostasPossiveis = new ArrayList<>();
+        Collections.addAll(respostasPossiveis,respostas);
         String opcoes = "Você é um:\n" +
                 "1 - Colaborador\n2 - Líder Técnico\n3 - Gerente de Departamento\n" +
                 "4 - Gerente Geral\n5 - Sair";
         if(Funcionario.listaFuncionarios.size()==0) {
             criarFrame("img/welcome.png","audio/iniciar.wav",3500);
         }
-       while(!Arrays.asList(respostasPossiveis).contains(resposta)) {
-           resposta = validacao.somenteNumeros(
-                   validacao.entradaVazia(
-                           JOptionPane.showInputDialog(null,"Você é um:\n" +
-                                           "1 - Colaborador\n2 - Líder Técnico\n3 - Gerente de Departamento\n" +
-                                           "4 - Gerente Geral\n5 - Sair"
-                                   ,"Gerenciamento de Funcionários",JOptionPane.QUESTION_MESSAGE),opcoes),
-           opcoes);
+       while(!respostasPossiveis.contains(resposta)) {
+           resposta = (int) somenteNumeros(
+                            entradaVazia(
+                           JOptionPane.showInputDialog(null,opcoes),
+                                    opcoes),
+                      opcoes);
        }
         switch (resposta) {
             case 1:
@@ -45,6 +45,9 @@ public class GUI {
                     Gerente gerenteGeral = new GerenteGeral();
                 }
             case 5: encerrar();
+                break;
+            default:
+                iniciar();
                 break;
         }
     }
